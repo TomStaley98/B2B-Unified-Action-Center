@@ -6,16 +6,17 @@ import { IPurchaseOrder } from './PurchaseOrder';
 
 @Injectable()
 export class PurchaseOrdersService {
-    private _purchaseOrderUrl='app/purchaseOrders.json';
+    // private _purchaseOrderUrl='app/purchaseOrders.json';
+    private _purchaseOrderUrl='http://p1vmb2bls01.olqa.preol.dell.com:4000/api/purchaseorder';
     constructor(private _http: Http){}
 
-    getPO(id: number): Observable<IPurchaseOrder> {
-        return this.getPOs()
-                .map(purchaseOrders => purchaseOrders.filter(po => po.PurchaseOrderNo == id)[0]);
+    getPurchaseOrderById(id: number) {
+        return this._http.get(this._purchaseOrderUrl + '?Id=' + id)
+                .map((response: Response) => response.json());                
     }
     
-    getPOs(): Observable<IPurchaseOrder[]>{
-        return this._http.get(this._purchaseOrderUrl)
-                .map((response: Response) => <IPurchaseOrder[]> response.json());      
-    }  
+    // getPurchaseOrders() {
+    //     return this._http.get(this._purchaseOrderUrl)
+    //             .map((response: Response) => response.json());
+    // }  
 }

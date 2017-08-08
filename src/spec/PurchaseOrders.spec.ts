@@ -34,13 +34,9 @@ class MockPurchaseOrdersService extends PurchaseOrdersService {
         }
     };
 
-    getPO(id: number): Observable<IPurchaseOrder> {
+    getPurchaseOrderById(id: number): Observable<IPurchaseOrder> {
         return Observable.of(this.purchaseOrder).map((value) => <IPurchaseOrder> value);
     }
-
-    getPOs(): Observable<IPurchaseOrder[]>{
-        return null;
-    } 
 }
 
 describe('Testing Purchase Order Component', () => {

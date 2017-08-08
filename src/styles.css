@@ -8,6 +8,10 @@ h1 {
   text-align: center;
   line-height: 50px;
   vertical-align: middle;
+  width: 90%;
+  float:left;
+  padding-right: 0px;
+  padding-left: 7px
 }
 .success {
   background-color:chartreuse;

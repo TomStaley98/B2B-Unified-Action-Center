@@ -17,19 +17,32 @@
         <br/><br/>
         <div *ngIf="purchaseOrder">
             <div class="row applicationStep">
-                <div class="col-sm-2" [ngClass]="setStatusColor(1)">B2B Direct</div>
-                <div class="col-sm-2" [ngClass]="setStatusColor(2)">B2B Service</div>
-                <div class="col-sm-2" [ngClass]="setStatusColor(3)">GCMP</div>
-                <div class="col-sm-2" [ngClass]="setStatusColor(4)">OFS</div>
-                <div class="col-sm-2" [ngClass]="setStatusColor(5)">Shipping</div>     
+                <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                    <div class="applicationStep" [ngClass]="setStatusColor(1)">B2B Direct</div>
+                    <div style="font-weight: 900; float:right">></div>
+                </div>
+                <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                    <div class="applicationStep" [ngClass]="setStatusColor(2)">B2B Service</div>
+                    <div style="font-weight: 900; float:right">></div>
+                </div>
+                <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                    <div class="applicationStep" [ngClass]="setStatusColor(3)">GCMP</div>
+                    <div style="font-weight: 900; float:right">></div>
+                </div>
+                <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                    <div class="applicationStep" [ngClass]="setStatusColor(4)">OFS</div>
+                    <div style="font-weight: 900; float:right">></div>
+                </div>
+                <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                    <div class="applicationStep" [ngClass]="setStatusColor(5)">Shipping</div>
+                </div>
             </div>
-            <br/><br/>
+            <br/><br/><br/><br/>
             <div *ngIf="purchaseOrder.Status.FailureText">
                 <button type="button" class="btn" (click)="repostPO(purchaseOrderNum)">Repost PO</button>
                 <button type="button" class="btn" (click)="getAdditionalDetails()">Find Additional Details</button>
             </div>
-            <br/>
-            <br/>
+            <br/><br/>
             <div class="row">
                 <div class=" col-sm-2">
                     <div class="alert alert-success" *ngIf="poReposted">PO {{purchaseOrder.PurchaseOrderNo}} Reposted</div>

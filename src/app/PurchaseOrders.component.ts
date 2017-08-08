@@ -22,7 +22,7 @@ export class PurchaseOrdersComponent {
     trackPurchaseOrder(id: number) {
         this.poReposted = false;
         this.additionalDetails = false;
-        this.poSrvc.getPO(id)
+        this.poSrvc.getPurchaseOrderById(id)
             .subscribe((po) => {
                 this.purchaseOrder = po;
             });

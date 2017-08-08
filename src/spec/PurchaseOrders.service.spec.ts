@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {PurchaseOrdersService} from '../app/PurchaseOrders.service';
 
-const mockResponse = [{
+const mockResponse = {
     "PurchaseOrderNo": 1,
     "OrderAmount": 2584,
     "OrderDate": "08/1/2017",
@@ -22,22 +22,10 @@ const mockResponse = [{
     "Status": {
         "ApplicationStep": 3,
         "ApplicationStatus": "Success",
-        "FailureText": null,
+        "FailureText": "",
         "LastUpdateTS": "08/2/2017 10:11:04 AM"
     }
-},
-{
-    "PurchaseOrderNo": 2,
-    "OrderAmount": 750,
-    "OrderDate": "08/2/2017",
-    "CustomerNo": 1,
-    "Status": {
-        "ApplicationStep": 2,
-        "ApplicationStatus": "Failure",
-        "FailureText": "Connection timeout",
-        "LastUpdateTS": "08/2/2017 10:11:04 AM"
-    }
-}];
+};
 
 describe('Testing Purchase Order Service', () => {
     let mockHttp: Http;
@@ -61,24 +49,24 @@ describe('Testing Purchase Order Service', () => {
         });
     });
 
-    it('should get search results from json',
-        inject([PurchaseOrdersService], (purchaseOrderSrvc: PurchaseOrdersService) => {
-        const expectedUrl = 'app/purchaseOrders.json';
-        purchaseOrderSrvc.getPOs()
-            .subscribe((res) => {
-                expect(mockHttp.get).toHaveBeenCalledWith(expectedUrl);
-                expect(res).toEqual(mockResponse);
-            });     
-        })
-    );
+    // it('should get search results from json',
+    //     inject([PurchaseOrdersService], (purchaseOrderSrvc: PurchaseOrdersService) => {
+    //     const expectedUrl = 'app/purchaseOrders.json';
+    //     purchaseOrderSrvc.getPOs()
+    //         .subscribe((res) => {
+    //             expect(mockHttp.get).toHaveBeenCalledWith(expectedUrl);
+    //             expect(res).toEqual(mockResponse);
+    //         });     
+    //     })
+    // );
 
     it('should get filtered result from json',
         inject([PurchaseOrdersService], (purchaseOrderSrvc: PurchaseOrdersService) => {
-        const expectedUrl = 'app/purchaseOrders.json';
-        purchaseOrderSrvc.getPO(1)
+        const expectedUrl = 'http://p1vmb2bls01.olqa.preol.dell.com:4000/api/purchaseorder?Id=1';
+        purchaseOrderSrvc.getPurchaseOrderById(1)
             .subscribe((res) => {
                 expect(mockHttp.get).toHaveBeenCalledWith(expectedUrl);
-                expect(res).toEqual(mockResponse[0]);
+                expect(res).toEqual(mockResponse);
             })      
         })
     );
