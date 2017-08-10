@@ -1,6 +1,6 @@
-import { PurchaseOrdersService } from '../app/PurchaseOrders.service';
-import { PurchaseOrdersComponent } from '../app/PurchaseOrders.component';
-import { IPurchaseOrder } from '../app/PurchaseOrder';
+import { PurchaseOrdersService } from '../app/PurchaseOrders/PurchaseOrders.service';
+import { PurchaseOrdersComponent } from '../app/PurchaseOrders/PurchaseOrders.component';
+import { IPurchaseOrder } from '../app/PurchaseOrders/PurchaseOrder';
 import { destroyPlatform } from '@angular/core';
 import {
     async,

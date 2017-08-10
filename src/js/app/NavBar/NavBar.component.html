@@ -1,0 +1,21 @@
+<header class="uif_mastHead_standard clearfix" id="revidHeader">
+    <nav dell-modal-popup-triggers class="mh dell-blue-background dell-layout-row">
+        <div class="dell-layout-row-content clearfix topNav">
+            <div class="mhNav">
+                <a title="Dell" class="mhLogo" href="//www.dell.com/account/">
+                    <img id="imgmhbluelogo" alt="Dell Logo" src="//i.dell.com/images/global/brand/ui/logo-wt-bl.png">
+                </a>
+                <div class="tierNav">
+                    <ul class="t1Nav horizontal-list">
+                        <li id="{{link.Id}}" class="primaryLevelMenu" *ngFor="let link of headerLinks">
+                            <div class="primaryLink">
+                                <a class="mNav" routerLink="{{link.Href}}" target="_self">{{link.Text}}</a>
+                                <span></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

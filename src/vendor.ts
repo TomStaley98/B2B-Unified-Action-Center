@@ -15,3 +15,4 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 require("./styles.css");
 require("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+require('./favicon.ico')

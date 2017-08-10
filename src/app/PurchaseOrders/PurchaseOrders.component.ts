@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Component ({
-    selector: 'my-app',
+    selector: 'purchase-orders',
     templateUrl: './PurchaseOrders.component.html',
     providers: [PurchaseOrdersService]
 })
