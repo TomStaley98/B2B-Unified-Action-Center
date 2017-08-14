@@ -12,7 +12,7 @@ import {
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {PurchaseOrdersService} from '../app/PurchaseOrders/PurchaseOrders.service';
+import { PurchaseOrdersService } from '../app/PurchaseOrders/PurchaseOrders.service';
 
 const mockResponse = {
     "PurchaseOrderNo": 1,
@@ -49,16 +49,16 @@ describe('Testing Purchase Order Service', () => {
         });
     });
 
-    // it('should get search results from json',
-    //     inject([PurchaseOrdersService], (purchaseOrderSrvc: PurchaseOrdersService) => {
-    //     const expectedUrl = 'app/purchaseOrders.json';
-    //     purchaseOrderSrvc.getPOs()
-    //         .subscribe((res) => {
-    //             expect(mockHttp.get).toHaveBeenCalledWith(expectedUrl);
-    //             expect(res).toEqual(mockResponse);
-    //         });     
-    //     })
-    // );
+    it('should get search results from json',
+        inject([PurchaseOrdersService], (purchaseOrderSrvc: PurchaseOrdersService) => {
+        const expectedUrl = 'app/purchaseOrders.json';
+        purchaseOrderSrvc.getPurchaseOrders()
+            .subscribe((res) => {
+                expect(mockHttp.get).toHaveBeenCalledWith(expectedUrl);
+                expect(res).toEqual(mockResponse);
+            });     
+        })
+    );
 
     it('should get filtered result from json',
         inject([PurchaseOrdersService], (purchaseOrderSrvc: PurchaseOrdersService) => {

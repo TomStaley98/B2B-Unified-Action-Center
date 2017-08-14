@@ -1,5 +1,5 @@
 export interface IPurchaseOrder {
-    PurchaseOrderNo: number,
+    PurchaseOrderNo: string,
     OrderAmount: number,
     OrderDate: Date,
     CustomerNo: number,

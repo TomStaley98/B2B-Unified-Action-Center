@@ -222,3 +222,27 @@ ul.horizontal-list li {
     font-weight: bold;
     display: inline-block;
 }
+
+.subnav-list li:first-child .secondaryLink {
+    margin-left: 0;
+}
+
+.subnav-list > ul > li {
+    min-width: 130px;
+    width: auto;
+    max-width: 180px;
+}
+
+.primaryLevelMenu.active .subNav,
+.secondLevelMenu.active .thirdNav {
+    display: block;
+}
+
+.subNav,
+.thirdNav {
+    position: absolute;
+    top: 71px;
+    z-index: 200;
+    left: 0;
+    right: 0;
+}

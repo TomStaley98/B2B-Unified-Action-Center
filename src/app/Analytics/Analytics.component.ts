@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonDataService } from '../Common/CommonData.service';
 
 @Component ({
     selector: 'analytics',
@@ -6,6 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AnalyticsComponent {
-    constructor() {
+    constructor(private commonDataService: CommonDataService) {
     }
 }

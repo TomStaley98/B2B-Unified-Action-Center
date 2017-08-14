@@ -1,5 +1,6 @@
 import { PurchaseOrdersService } from '../app/PurchaseOrders/PurchaseOrders.service';
-import { PurchaseOrdersComponent } from '../app/PurchaseOrders/PurchaseOrders.component';
+import { PurchaseOrdersSearchComponent } from '../app/PurchaseOrders/PurchaseOrders.Search.component';
+import { CommonDataService } from '../app/Common/CommonData.service';
 import { IPurchaseOrder } from '../app/PurchaseOrders/PurchaseOrder';
 import { destroyPlatform } from '@angular/core';
 import {
@@ -22,7 +23,7 @@ import 'rxjs/add/observable/of';
 
 class MockPurchaseOrdersService extends PurchaseOrdersService {
     private purchaseOrder = {
-        "PurchaseOrderNo": 2,
+        "PurchaseOrderNo": "2",
         "OrderAmount": 750,
         "OrderDate": new Date("08/2/2017"),
         "CustomerNo": 1,
@@ -41,18 +42,18 @@ class MockPurchaseOrdersService extends PurchaseOrdersService {
 
 describe('Testing Purchase Order Component', () => {
 
-    let fixture: ComponentFixture<PurchaseOrdersComponent>;
+    let fixture: ComponentFixture<PurchaseOrdersSearchComponent>;
 
     beforeEach(() => {   
         TestBed.configureTestingModule({
-            declarations: [PurchaseOrdersComponent],
-            providers: [PurchaseOrdersService],
-            imports: [ BrowserModule,FormsModule,HttpModule ],
+            declarations: [ PurchaseOrdersSearchComponent ],
+            providers: [ PurchaseOrdersService, CommonDataService ],
+            imports: [ BrowserModule, FormsModule, HttpModule ],
         });
 
-        TestBed.overrideComponent(PurchaseOrdersComponent, {
+        TestBed.overrideComponent(PurchaseOrdersSearchComponent, {
             set: {
-                providers: [{provide: PurchaseOrdersService, useClass: MockPurchaseOrdersService}],
+                providers: [{ provide: PurchaseOrdersService, useClass: MockPurchaseOrdersService }],
                 templateUrl: null,
                 template: '<div *ngIf="purchaseOrder">' +
                 '<div id="PurchaseOrderNo">{{purchaseOrder.PurchaseOrderNo}}</div>' +
@@ -67,11 +68,11 @@ describe('Testing Purchase Order Component', () => {
             }        
         })
         
-        fixture = TestBed.createComponent(PurchaseOrdersComponent)
+        fixture = TestBed.createComponent(PurchaseOrdersSearchComponent)
         fixture.detectChanges();
     });
 
-    it('Should get purchase order from service', inject([PurchaseOrdersService], (injectService: PurchaseOrdersService) => {
+    it('Should get purchase order from service', inject([PurchaseOrdersService, CommonDataService], (injectService: [PurchaseOrdersService, CommonDataService]) => {
         fixture.componentInstance.trackPurchaseOrder(1);
         fixture.whenStable()
             .then(() => {

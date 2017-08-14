@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>B2B Unified Action Center</h1>      
+        <p>Track and sync your Purchase Order. Deep dive and know Customer Order trends</p>
+        <button type="button" class="btn btn-primary">Learn more >></button>
+    </div>
+    <div class="form-group">
+        <div>
+             <div class="row">
+                <div class="col-sm-3">
+                    <label for="ordNo">Placerholder div for filter controls</label>
+                </div>
+            </div><br/> 
+            <button type="button" class="btn btn-info" (click)="getPurchaseOrders()">Get Purchase Orders</button>
+        </div>
+        <br/><br/>
+        <div *ngIf="showResults" class="panel-group">
+            <div *ngFor="let purchaseOrder of purchaseOrders">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#details-{{purchaseOrder.PurchaseOrderNo}}">PurchaseOrderNo: {{purchaseOrder.PurchaseOrderNo}}</a>
+                        </h4>
+                    </div>
+                    <div id="details-{{purchaseOrder.PurchaseOrderNo}}" class="panel-collapse collapse" [ngClass]="getCollapseStatus(purchaseOrder.PurchaseOrderNo)">
+                        <div class="panel-body">
+                            <div>OrderAmount: {{purchaseOrder.OrderAmount | currency:'USD':true}}</div>
+                            <div>OrderDate: {{purchaseOrder.OrderDate}}</div>
+                            <div>CustomerNo: {{purchaseOrder.CustomerNo}}</div>
+                            <div>Status Details -</div>
+                            <div style="text-indent:40px">LastUpdateTS: {{purchaseOrder.Status.LastUpdateTS}}</div>
+                            <div style="text-indent:40px">ApplicationStep: {{purchaseOrder.Status.ApplicationStep}}</div>
+                            <div style="text-indent:40px">ApplicationStatus: {{purchaseOrder.Status.ApplicationStatus}}</div>
+                            <div *ngIf="purchaseOrder.Status.FailureText" style="text-indent:40px">FailureText: {{purchaseOrder.Status.FailureText}}</div>
+                            <br/>
+                            <button type="button" class="btn" (click)="selectPO(purchaseOrder)" routerLink="/search/purchase-orders">Send to Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

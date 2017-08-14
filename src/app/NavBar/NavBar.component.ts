@@ -8,14 +8,19 @@ import { IHeaderLink } from './HeaderLink';
 
 export class NavBarComponent {
     headerLinks: IHeaderLink[] = [{
+        Id: 'po-browse-link',
+        Text: "Browse PO",
+        Href: '/browse/purchase-orders'
+    },
+    {
         Id: 'po-search-link',
-        Text: "By PO",
-        Href: '/purchase-orders'
+        Text: "Search PO",
+        Href: '/search/purchase-orders'
     },
     {
         Id: 'customer-search-link',
-        Text: "By Customer",
-        Href: '/customers'
+        Text: "Search Customer",
+        Href: '/search/customers'
     },
     {
         Id: 'analytics-link',

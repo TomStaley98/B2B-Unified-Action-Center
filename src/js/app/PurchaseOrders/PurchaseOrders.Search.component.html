@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>B2B Unified Action Center</h1>      
+        <p>Track and sync your Purchase Order. Deep dive and know Customer Order trends</p>
+        <button type="button" class="btn btn-primary">Learn more >></button>
+    </div>
+    <div class="form-group">
+        <div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="ordNo">PO Number:</label>
+                    <input id="ordNo" class="form-control" [(ngModel)]="purchaseOrderNum">
+                </div>
+            </div><br/>
+            <button type="button" class="btn btn-info" (click)="trackPurchaseOrder(purchaseOrderNum)">Track Order</button>
+        </div>
+        <br/><br/>
+        <div *ngIf="showResults">
+            <div *ngIf="purchaseOrder">
+                <div class="row" style="margin-left: -8px">
+                    <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                        <div class="applicationStep" [ngClass]="setStatusColor(1)">B2B Direct</div>
+                        <div style="font-weight: 900; float:right">></div>
+                    </div>
+                    <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                        <div class="applicationStep" [ngClass]="setStatusColor(2)">B2B Service</div>
+                        <div style="font-weight: 900; float:right">></div>
+                    </div>
+                    <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                        <div class="applicationStep" [ngClass]="setStatusColor(3)">GCMP</div>
+                        <div style="font-weight: 900; float:right">></div>
+                    </div>
+                    <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                        <div class="applicationStep" [ngClass]="setStatusColor(4)">OFS</div>
+                        <div style="font-weight: 900; float:right">></div>
+                    </div>
+                    <div class="col-sm-2 applicationStep" style="padding-right: 0px; padding-left: 7px">
+                        <div class="applicationStep" [ngClass]="setStatusColor(5)">Shipping</div>
+                    </div>
+                </div>
+                <br/>
+                <div *ngIf="purchaseOrder.Status.FailureText">
+                    <button type="button" class="btn" (click)="repostPO(purchaseOrderNum)">Repost PO</button>
+                    <button type="button" class="btn" (click)="getAdditionalDetails()">Find Additional Details</button>
+                    <br/><br/>                 
+                </div>                
+                <button *ngIf="previousPage" type="button" class="btn" routerLink="{{previousPage}}">Return to Browse</button>
+                <br/>
+                <div class="row">
+                    <div class=" col-sm-2">
+                        <div class="alert alert-success" *ngIf="poReposted">PO {{purchaseOrder.PurchaseOrderNo}} Reposted</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-sm-6">
+                        <div class="alert alert-info" *ngIf="additionalDetails">
+                            <div>PurchaseOrderNo: {{purchaseOrder.PurchaseOrderNo}}</div>
+                            <div>OrderAmount: {{purchaseOrder.OrderAmount | currency:'USD':true}}</div>
+                            <div>OrderDate: {{purchaseOrder.OrderDate}}</div>
+                            <div>CustomerNo: {{purchaseOrder.CustomerNo}}</div>
+                            <div>Status Details -</div>
+                            <div style="text-indent:40px">LastUpdateTS: {{purchaseOrder.Status.LastUpdateTS}}</div>
+                            <div style="text-indent:40px">ApplicationStep: {{purchaseOrder.Status.ApplicationStep}}</div>
+                            <div style="text-indent:40px">ApplicationStatus: {{purchaseOrder.Status.ApplicationStatus}}</div>
+                            <div *ngIf="purchaseOrder.Status.FailureText" style="text-indent:40px">FailureText: {{purchaseOrder.Status.FailureText}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

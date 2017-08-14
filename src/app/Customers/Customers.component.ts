@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonDataService } from '../Common/CommonData.service';
 
 @Component ({
     selector: 'customers',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class CustomersComponent {
-    constructor() {
+    constructor(private commonDataService: CommonDataService) {
+        console.log(commonDataService.getSelectedPO());
     }
 }

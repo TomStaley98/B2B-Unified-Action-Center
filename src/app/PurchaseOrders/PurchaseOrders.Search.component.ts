@@ -1,30 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IPurchaseOrder } from './PurchaseOrder';
 import { PurchaseOrdersService } from './PurchaseOrders.service';
+import { CommonDataService } from '../Common/CommonData.service';
 import { Http , Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Component ({
-    selector: 'purchase-orders',
-    templateUrl: './PurchaseOrders.component.html',
-    providers: [PurchaseOrdersService]
+    selector: 'purchase-orders-search',
+    templateUrl: './PurchaseOrders.Search.component.html'
 })
 
-export class PurchaseOrdersComponent {
+export class PurchaseOrdersSearchComponent implements OnInit {
     purchaseOrder: IPurchaseOrder = null;
+    purchaseOrderNum: string = '';
     poReposted = false;
     additionalDetails = false;
+    showResults = false;
+    previousPage:string = '';
 
-    constructor(private poSrvc: PurchaseOrdersService) {
+    constructor(private poSrvc: PurchaseOrdersService, private commonDataService: CommonDataService) {
+    }
+
+    ngOnInit() {
+        let selectedPo = this.commonDataService.getSelectedPO();
+        if(selectedPo) {            
+            this.purchaseOrder = selectedPo;
+            this.purchaseOrderNum = this.purchaseOrder.PurchaseOrderNo;
+            this.showResults = true;
+        }
+        let previousPage = this.commonDataService.getPreviousPage();
+        if(previousPage) {
+            this.previousPage = previousPage; 
+        }
     }
 
     trackPurchaseOrder(id: number) {
+        this.showResults = false;
         this.poReposted = false;
         this.additionalDetails = false;
         this.poSrvc.getPurchaseOrderById(id)
             .subscribe((po) => {
+                this.showResults = true;
                 this.purchaseOrder = po;
+                this.commonDataService.setSelectedPO(po);
             });
     }
 
